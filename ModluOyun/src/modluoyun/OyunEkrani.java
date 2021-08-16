@@ -38,6 +38,7 @@ public class OyunEkrani extends JFrame {
         OyunEkrani futbol_ekran = new OyunEkrani("Futbol");
         OyunEkrani menu = new OyunEkrani("Menu (HAZIRLAYAN: ÖMER YALMAN)");
         OyunEkrani viking_ekrann = new OyunEkrani("VİKİNG");
+        OyunEkrani bilgi_ekran = new OyunEkrani("NASIL OYNANIR?");
         JButton button = new JButton();
         menu.setResizable(false);
         menu.setFocusable(false);
@@ -54,6 +55,12 @@ public class OyunEkrani extends JFrame {
             }
         });
 */
+         b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                menu.setVisible(false);
+                bilgi_ekran.setVisible(true);
+            }
+        });
         f.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 menu.setVisible(false);
@@ -72,11 +79,18 @@ public class OyunEkrani extends JFrame {
                 viking_ekrann.setVisible(true);
             }
         });
+        
+         JLabel bilgi_a=new JLabel("Asker Savaşları= 1.oyuncu 'CTRL' ile ateş 'SHIFT' ile f0ze atabilir 2. oyuncu 'ENTER' ile ateş edip 'SPACE' ile füze atabilir.");
+         JLabel bilgi_f=new JLabel("Futbol Savaşları= 1.oyuncu 'CTRL' ile şut atabilir 2. oyuncu ise 'ENTER' ile atabilir topu kurtarmak için topun önüne geçmek yeterlidir.");
+         JLabel bilgi_v=new JLabel("Viking Savaşları= 1.oyuncu 'CTRL' ile ateş edebilir 'Z' tuşu ile kalkanı kullanabilir 2. oyuncu ise 'ENTER' ile ateş edip 'K' tuşu ile kalkanı kullanabilir");
+         JLabel bilgi_g=new JLabel("Hareket Etmek= 1. oyuncu 'A' ve 'D' tuşu ile  2. oyuncu ise yön tuşlarıyla sağ ve sol yapabilir.");
+          
 
         f.setBounds(100, 100, 200, 30);
         a.setBounds(100, 150, 200, 30);
-    //   h.setBounds(100, 200, 200, 30);
+    //   h.setBounds(100, 250, 200, 30);
         v.setBounds(100, 50, 200, 30);
+        b.setBounds(100, 200, 200, 30);
         menu.add(v);
     //   menu.add(h);
         menu.add(a);
@@ -100,6 +114,19 @@ public class OyunEkrani extends JFrame {
         asker_ekran.setFocusable(false);
         asker_ekran.setSize(900, 700);
         asker_ekran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        
+         bilgi_ekran.setResizable(false);
+        bilgi_ekran.setFocusable(false);
+        bilgi_ekran.setSize(900, 300);
+        bilgi_g.setSize(1000,70);
+        bilgi_a.setSize(1000,140);
+        bilgi_f.setSize(1000,200);
+        bilgi_v.setSize(1000,300);
+        bilgi_ekran.add(bilgi_g);
+        bilgi_ekran.add(bilgi_a);
+        bilgi_ekran.add(bilgi_f);
+        bilgi_ekran.add(bilgi_v);    
+        bilgi_ekran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         viking_ekrann.setResizable(false);
         viking_ekrann.setFocusable(false);
