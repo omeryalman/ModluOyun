@@ -68,6 +68,7 @@ public class FutbolSavaslari extends JPanel implements KeyListener,ActionListene
  private BufferedImage top;
  private BufferedImage ters_kale;
  private BufferedImage kale;
+ private BufferedImage gol;
  
 private ArrayList<Top> rakip_atesler = new ArrayList<Top>();
  private ArrayList<Top> atesler = new ArrayList<Top>();
@@ -118,16 +119,19 @@ private ArrayList<Top> rakip_atesler = new ArrayList<Top>();
      } catch (IOException ex) {
          Logger.getLogger(HamburgerSavaslari.class.getName()).log(Level.SEVERE, null, ex);
      }
+        
       try {
          images=ImageIO.read(new FileImageInputStream(new File("mavi_takim.png")));
      } catch (IOException ex) {
          Logger.getLogger(HamburgerSavaslari.class.getName()).log(Level.SEVERE, null, ex);
      }
+        
      try {
          top=ImageIO.read(new FileImageInputStream(new File("top.png")));
      } catch (IOException ex) {
          Logger.getLogger(HamburgerSavaslari.class.getName()).log(Level.SEVERE, null, ex);
      }
+        
        try {
          kale=ImageIO.read(new FileImageInputStream(new File("yesil_kale.png")));
      } catch (IOException ex) {
@@ -139,7 +143,12 @@ private ArrayList<Top> rakip_atesler = new ArrayList<Top>();
      } catch (IOException ex) {
          Logger.getLogger(HamburgerSavaslari.class.getName()).log(Level.SEVERE, null, ex);
      }
-     
+        
+     try {
+         gol=ImageIO.read(new FileImageInputStream(new File("gol.png")));
+     } catch (IOException ex) {
+         Logger.getLogger(HamburgerSavaslari.class.getName()).log(Level.SEVERE, null, ex);
+     }    
    
     setBackground(Color.green);
     timer.start();
@@ -180,10 +189,18 @@ private ArrayList<Top> rakip_atesler = new ArrayList<Top>();
         
          for(Top ates : atesler){
             g.drawImage(top,ates.getX(),ates.getY(),top.getWidth()/20,top.getHeight()/20, this);
+             if( new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (kaleY,5,350,75))){
+                g.drawImage(gol,ates.getX(),ates.getY(), gol.getWidth()/10,gol.getHeight()/10   , this);
+            }       
             }
+        
          for(Top ates : rakip_atesler){
             g.drawImage(top,ates.getX(),ates.getY(),top.getWidth()/20,top.getHeight()/20, this);
+             if( new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (kaleX,570,350,75))){
+                g.drawImage(gol,ates.getX(),ates.getY(), gol.getWidth()/10,gol.getHeight()/10   , this);
+            }      
             }
+        
               if(kontrolEt2()){
         timer.stop();
               String  message=" SARI TAKIM KAZANDI " +
