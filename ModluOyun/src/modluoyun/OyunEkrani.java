@@ -16,6 +16,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 /**
@@ -43,6 +44,7 @@ public class OyunEkrani extends JFrame {
         menu.setResizable(false);
         menu.setFocusable(false);
 
+        JButton b = new JButton("NASIL OYNANIR?");
         JButton f = new JButton("FUTBOL SAVAŞLARI");
     //   JButton h = new JButton("HAMBURGER SAVAŞLARI");
         JButton a = new JButton("ASKER SAVAŞLARI");
@@ -91,6 +93,8 @@ public class OyunEkrani extends JFrame {
     //   h.setBounds(100, 250, 200, 30);
         v.setBounds(100, 50, 200, 30);
         b.setBounds(100, 200, 200, 30);
+        
+        menu.add(b);
         menu.add(v);
     //   menu.add(h);
         menu.add(a);
