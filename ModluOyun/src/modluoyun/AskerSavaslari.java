@@ -77,9 +77,9 @@ private ArrayList<Atess> roket_rakip_atesler = new ArrayList<Atess>();
   
     
     private int atesdirY=1;
-    private int topX=0;
+    private int topX=300;
     private int topdirX=2;
-    private int asagiOyuncuX=0;
+    private int asagiOyuncuX=300;
     private int dirUzayX=20;
     private int tas_kaleX=0;
 
@@ -215,7 +215,7 @@ private ArrayList<Atess> roket_rakip_atesler = new ArrayList<Atess>();
          g.drawImage(tas_kale, tas_kaleX, 590, tas_kale.getWidth()+505,tas_kale.getHeight()/3   , this);
          g.drawImage(tas_kale, tas_kaleX, 0, tas_kale.getWidth()+505,tas_kale.getHeight()/3   , this);
         timer.start();
-        
+        Ses ses =new Ses();
         
         for(Atess ates : atesler){
             if(ates.getY()<0 ){
@@ -245,14 +245,16 @@ private ArrayList<Atess> roket_rakip_atesler = new ArrayList<Atess>();
          for(Atess ates : roket_atesler){
             g.drawImage(fuze,ates.getX(),ates.getY(),fuze.getWidth()/15,fuze.getHeight()/15, this);
             
-           if( new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (tas_kaleX,50,505,20))){
+           if( new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (tas_kaleX,50,1000,20))){
+               ses.sesCal("patlamasesi.wav");
                 g.drawImage(patlama,ates.getX(),ates.getY(), patlama.getWidth()/10,patlama.getHeight()/10   , this);
             }          
             }
          
            for(Atess ates : roket_rakip_atesler){
             g.drawImage(ters_fuze,ates.getX(),ates.getY(),ters_fuze.getWidth()/15,ters_fuze.getHeight()/15, this);
-             if( new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (tas_kaleX,570,505,20))){
+             if( new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (tas_kaleX,570,1000,20))){
+                 ses.sesCal("patlamasesi.wav");
                 g.drawImage(patlama,ates.getX(),ates.getY(), patlama.getWidth()/10,patlama.getHeight()/10   , this);
                        
 
@@ -269,7 +271,7 @@ private ArrayList<Atess> roket_rakip_atesler = new ArrayList<Atess>();
        
          
               if(kontrolEt2()){
-                  
+                  ses.sesCal("vurulunca.wav");
         timer.stop();
         
                String  message=" AŞAĞIDAKİ ASKERİ YENDİNİZ " +
@@ -289,6 +291,7 @@ private ArrayList<Atess> roket_rakip_atesler = new ArrayList<Atess>();
     }
             
               if(kontrolEt()){
+              ses.sesCal("vurulunca.wav");
         timer.stop();
               String  message="YUKARIDAKİ ASKERİ YENDİNİZ " +
                       "Geçen süre = " + gecen_sure/1000.0;
@@ -315,6 +318,7 @@ private ArrayList<Atess> roket_rakip_atesler = new ArrayList<Atess>();
 
     @Override
     public void keyPressed(KeyEvent e) {
+        Ses ses =new Ses();
           int c= e.getKeyCode();
         if(c==KeyEvent.VK_LEFT){
             
@@ -335,9 +339,11 @@ private ArrayList<Atess> roket_rakip_atesler = new ArrayList<Atess>();
         }
         else if(c==KeyEvent.VK_ENTER){
             atesler.add(new Atess(asagiOyuncuX+5,470));
+             ses.sesCal("atessesi.wav");
         }
          else if(c==KeyEvent.VK_SPACE){
             roket_atesler.add(new Atess(asagiOyuncuX+5,470));
+             ses.sesCal("roketsesi.wav");
         }
         
         int d= e.getKeyCode();
@@ -359,9 +365,13 @@ private ArrayList<Atess> roket_rakip_atesler = new ArrayList<Atess>();
         }
         else if(d==KeyEvent.VK_CONTROL){
             rakip_atesler.add(new Atess(topX+5,150));
+                        ses.sesCal("atessesi.wav");
+
         }
          else if(d==KeyEvent.VK_SHIFT){
             roket_rakip_atesler.add(new Atess(topX+5,150));
+                         ses.sesCal("roketsesi.wav");
+
         }
     }
 
