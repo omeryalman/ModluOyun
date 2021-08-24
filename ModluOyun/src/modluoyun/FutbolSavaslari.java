@@ -57,11 +57,10 @@ class Top{
 
 public class FutbolSavaslari extends JPanel implements KeyListener,ActionListener{
                    
-    
-    
-    
-    
-    Timer timer = new Timer(5,this);
+    Ses ses = new Ses();
+
+ 
+ Timer timer = new Timer(5,this);
  private int gecen_sure;
  private BufferedImage image;
  private BufferedImage images;
@@ -76,9 +75,9 @@ private ArrayList<Top> rakip_atesler = new ArrayList<Top>();
   
     
     private int atesdirY=1;
-    private int topX=0;
+    private int topX=300;
     private int topdirX=2;
-    private int asagiOyuncuX=0;
+    private int asagiOyuncuX=300;
      private int kaleX=250;
      private int kaleY=250;
     private int dirUzayX=20;
@@ -202,12 +201,14 @@ private ArrayList<Top> rakip_atesler = new ArrayList<Top>();
             }
         
               if(kontrolEt2()){
+                   ses.sesCal("gololunca.wav");
         timer.stop();
               String  message=" SARI TAKIM KAZANDI " +
                       "Geçen süre = " + gecen_sure/1000.0;
             JOptionPane.showMessageDialog(this, message);
     }
               if(kontrolEt()){
+                  ses.sesCal("gololunca.wav");
         timer.stop();
               String  message="KIRMIZI IAKIM KAZANDI " +
                       "Geçen süre = " + gecen_sure/1000.0;
@@ -253,6 +254,7 @@ private ArrayList<Top> rakip_atesler = new ArrayList<Top>();
         }
         else if(c==KeyEvent.VK_ENTER){
             atesler.add(new Top(asagiOyuncuX+15,470));
+            ses.sesCal("topsesi.wav");
         }
         
         int d= e.getKeyCode();
@@ -274,6 +276,7 @@ private ArrayList<Top> rakip_atesler = new ArrayList<Top>();
         }
         else if(d==KeyEvent.VK_CONTROL){
             rakip_atesler.add(new Top(topX+5,150));
+            ses.sesCal("topsesi.wav");
         }
     }
 

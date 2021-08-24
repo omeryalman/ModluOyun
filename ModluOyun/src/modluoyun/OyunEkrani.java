@@ -40,6 +40,7 @@ public class OyunEkrani extends JFrame {
         OyunEkrani menu = new OyunEkrani("Menu (HAZIRLAYAN: ÖMER YALMAN)");
         OyunEkrani viking_ekrann = new OyunEkrani("VİKİNG");
         OyunEkrani bilgi_ekran = new OyunEkrani("NASIL OYNANIR?");
+        Ses ses =new Ses();
         JButton button = new JButton();
         menu.setResizable(false);
         menu.setFocusable(false);
@@ -67,18 +68,22 @@ public class OyunEkrani extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 menu.setVisible(false);
                 futbol_ekran.setVisible(true);
+                ses.sesCal("statsesi.wav");
             }
         });
         a.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 menu.setVisible(false);
                 asker_ekran.setVisible(true);
+                ses.sesCal("askerarkaplan.wav");
+
             }
         });
          v.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 menu.setVisible(false);
                 viking_ekrann.setVisible(true);
+                ses.sesCal("vikingarkaplan.wav");
             }
         });
         

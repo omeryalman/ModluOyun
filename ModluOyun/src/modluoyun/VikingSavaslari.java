@@ -72,7 +72,7 @@ public class VikingSavaslari extends JPanel implements KeyListener,ActionListene
  private BufferedImage tas_kale;
  private BufferedImage fuze;
   private BufferedImage ters_fuze;
-  
+  private BufferedImage kan;
    private BufferedImage kalkan;
   
 
@@ -83,9 +83,9 @@ private ArrayList<Ates_> rakip_atesler = new ArrayList<Ates_>();
   
     
     private int atesdirY=1;
-    private int topX=0;
+    private int topX=300;
     private int topdirX=2;
-    private int asagiOyuncuX=0;
+    private int asagiOyuncuX=300;
     private int dirUzayX=20;
            
   
@@ -145,7 +145,11 @@ private ArrayList<Ates_> rakip_atesler = new ArrayList<Ates_>();
      } catch (IOException ex) {
          Logger.getLogger(AskerSavaslari.class.getName()).log(Level.SEVERE, null, ex);
      }      
-     
+     try {
+         kan=ImageIO.read(new FileImageInputStream(new File("kan.png")));
+     } catch (IOException ex) {
+         Logger.getLogger(AskerSavaslari.class.getName()).log(Level.SEVERE, null, ex);
+     }
      
      
     setBackground(Color.darkGray);
@@ -201,10 +205,22 @@ private ArrayList<Ates_> rakip_atesler = new ArrayList<Ates_>();
             
         }
         
-         
+          for(Ates_ ates : rakip_atesler){           
+            if(new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (asagiOyuncuX,420,80,20)) ){
+          g.drawImage(kan,ates.getX(),ates.getY(),kan.getWidth()/5,kan.getHeight()/5, this);
+
+            }
+            }
+         for(Ates_ ates : atesler){
+            if(new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (topX,10,80,20)) ){
+          g.drawImage(kan,ates.getX(),ates.getY(),kan.getWidth()/5,kan.getHeight()/5, this);
+
+            }
+            }
           
           
        
+        Ses ses = new Ses();
 
        
      
@@ -217,12 +233,16 @@ private ArrayList<Ates_> rakip_atesler = new ArrayList<Ates_>();
          
         
             if(kontrolEt2()){//
+              ses.sesCal("vurulunca.wav");
+
         timer.stop();
               String  message=" AŞAĞIDAKİ RAKİBİ YENDİNİZ " +
                      "Geçen süre = " + gecen_sure/1000.0;
             JOptionPane.showMessageDialog(this, message);
     }
               if(kontrolEt()){
+        ses.sesCal("vurulunca.wav");
+
         timer.stop();
               String  message="YUKARIDAKİ RAKİBİ YENDİNİZ " +
                       "Geçen süre = " + gecen_sure/1000.0;
@@ -248,6 +268,7 @@ private ArrayList<Ates_> rakip_atesler = new ArrayList<Ates_>();
 
     @Override
     public void keyPressed(KeyEvent e) {
+        Ses ses = new Ses();
              int c= e.getKeyCode();
         if(c==KeyEvent.VK_LEFT){
             
@@ -270,8 +291,10 @@ private ArrayList<Ates_> rakip_atesler = new ArrayList<Ates_>();
         
         else if(c==KeyEvent.VK_ENTER){
             atesler.add(new Ates_(asagiOyuncuX+45,470));
+            ses.sesCal("vurmasesi.wav");
         }
        else if(c==KeyEvent.VK_K){
+           ses.sesCal("kalkansesi.wav");
            for (Ates_ ates : rakip_atesler){
             if( new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (asagiOyuncuX,400,80,20))){
             rakip_atesler.remove(ates);
@@ -299,8 +322,10 @@ private ArrayList<Ates_> rakip_atesler = new ArrayList<Ates_>();
         }
      else if(d==KeyEvent.VK_CONTROL){
             rakip_atesler.add(new Ates_(topX-25,20));
+         ses.sesCal("vurmasesi.wav");
         }
         else if(c==KeyEvent.VK_Z){
+           ses.sesCal("kalkansesi.wav");
               for (Ates_ ates : atesler){
              if( new Rectangle(ates.getX(),ates.getY(),10,20).intersects(new Rectangle (topX,10,80,20))){
               atesler.remove(ates);
